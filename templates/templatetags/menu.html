@@ -1,0 +1,18 @@
+{% block content %}
+{% load menu_tag %}
+{% if menu.menu_list %}
+    <div class="div_top_hypers">
+        <ul class="ul_top_hypers">
+
+            {% for item in menu.menu_list %}
+                {% include "templatetags/sub_menu.html" %}
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    <div class="menu-not-found">
+        <p class="menu-not-found-text">{{ menu.error }}</p>
+    </div>
+{% endif %}
+
+{% endblock content %}

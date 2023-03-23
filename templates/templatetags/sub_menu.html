@@ -1,0 +1,25 @@
+{% block content %}
+    <li>
+        {%if item.children %}
+        <a href="{{ item.slug }}" {% if request.path == '/'|add:item.slug %}class="active"{% endif %}>
+            {{ item.title }}
+        </a>
+
+        <ul>
+
+            {% for child in item.children.all %}
+                {% with item=child template_name="templatetags/sub_menu.html" %}
+                    {% include template_name %}
+                {% endwith %}
+            {% endfor %}
+
+        </ul>
+        {% else %}
+        <a href="{{ item.slug }}"{% if request.path == '/'|add:item.slug %}class="active"{% endif %}>{{ item.title }}
+        </a>
+        {% endif %}
+
+
+    </li>
+
+{% endblock content %}
